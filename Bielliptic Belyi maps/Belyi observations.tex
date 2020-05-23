@@ -1,0 +1,281 @@
+\documentclass[reqno, 12pt]{amsart}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsxtra}
+\usepackage{mathrsfs}
+%\usepackage{enumerate}
+\usepackage{comment}
+\usepackage{graphicx}
+%\usepackage[all]{xy}
+\usepackage{placeins}
+\usepackage{multicol}
+\usepackage{bbm}
+\usepackage{cancel}
+\usepackage{fullpage}
+\usepackage{stmaryrd}
+\usepackage{wasysym}
+\usepackage{subcaption}
+\usepackage{url}
+\usepackage{hyperref}
+
+\usepackage[inline, shortlabels]{enumitem}
+%\usepackage{calc}
+%\usepackage{tikz}
+%\usetikzlibrary{arrows,calc,automata,shadows,backgrounds,positioning,intersections,fadings,decorations.pathreplacing,shapes,snakes, matrix}
+\usepackage{tikz-cd}
+
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\setlength{\hfuzz}{4pt}
+
+\newtheorem{thm}{Theorem}%[section]
+\newtheorem{lem}{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}  
+\newtheorem{defn} [thm] {Definition} 
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{example} [thm] {Example}
+\newtheorem{rem} [thm] {Remark}
+
+\newenvironment{problab}[1]
+{\noindent\textbf{Problem #1}.}
+{\vskip 6pt}
+
+\theoremstyle{remark}
+\newtheorem*{soln}{Solution}
+
+\newenvironment{enumalph}
+{\begin{enumerate}\renewcommand{\labelenumi}{\textnormal{(\alph{enumi})}}}
+{\end{enumerate}}
+
+\newenvironment{enumroman}
+{\begin{enumerate}\renewcommand{\labelenumi}{\textnormal{(\roman{enumi})}}}
+{\end{enumerate}}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\D}{\mathbf D}
+\renewcommand{\H}{\mathbf H}
+\newcommand{\F}{\mathbb F}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\T}{\mathbb T}
+\renewcommand{\P}{\mathbb P}
+\renewcommand{\O}{\mathcal O}
+\newcommand{\M}{\mathfrak M}
+\newcommand{\A}{\mathbb A}
+\newcommand{\V}{\mathbb V}
+\newcommand{\I}{\mathbb I}
+\newcommand{\m}{\mathfrak m}
+\renewcommand{\SS}{\mathbb S}
+
+\newcommand{\Cscr}{\mathscr C}
+\newcommand{\Dscr}{\mathscr D}
+\newcommand{\Fscr}{\mathscr F}
+\newcommand{\Gscr}{\mathscr G}
+
+\renewcommand{\L}{\mathcal{L}}
+
+\renewcommand{\Re}{\text{Re}}
+\renewcommand{\Im}{\text{Im}}
+
+\newcommand{\gl}{\mathfrak gl}
+\renewcommand{\sl}{\mathfrak sl}
+\newcommand{\s}{\mathfrak s}
+\renewcommand{\a}{\mathfrak a}
+\newcommand{\p}{\mathfrak p}
+\newcommand{\q}{\mathfrak q}
+\newcommand{\normal}{\trianglelefteq}
+
+\newcommand{\Cov}{\text{Cov}}
+\newcommand{\charac}{\text{char}}
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\wt}{\widetilde}
+
+\newcommand{\Auniv}{{A_\text{univ}}}
+\newcommand{\Runiv}{{R_\text{univ}}}
+\DeclareMathOperator{\gdeg}{gdeg}
+
+\newcommand{\Kbar}{\overline{K}}
+
+\renewcommand{\div}{\text{div}}
+
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\img}{img}
+\DeclareMathOperator{\ann}{ann}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Mor}{Mor}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Spl}{Spl}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\Ob}{Ob}
+\DeclareMathOperator{\genus}{genus}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\SO}{SO}
+\DeclareMathOperator{\Sp}{Sp}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\wasy}{\wasylozenge}
+\DeclareMathOperator{\Frob}{Frob}
+\DeclareMathOperator{\Nm}{Nm}
+\DeclareMathOperator{\rank}{rank}
+
+\DeclareMathOperator{\trd}{trd}
+\DeclareMathOperator{\nrd}{nrd}
+
+\DeclareMathOperator{\Supp}{Supp}
+\DeclareMathOperator{\res}{res}
+
+\DeclareMathOperator{\id}{id}
+
+\newcommand{\trouble}[1]{{\color{green} [#1]}}
+
+%\newcommand{\res}[3]{\left(\frac{#1}{#2} \right)_{#3}}
+
+\renewcommand{\thesection}{\Roman{section}} 
+
+\usepackage{mathpple}
+%\usepackage{pxfonts}
+
+\everymath{\displaystyle}
+\tikzset{commutative diagrams/.cd, arrow style = tikz, diagrams = {>=latex}}
+
+
+\begin{document}
+
+\title{Belyi stuff}
+\author{Sam Schiavone}
+%\date{30 June 2017}
+\date{\today}
+
+\maketitle
+
+\section{Bielliptic Belyi}
+
+Combining my recent interests of Belyi maps and glueing curves along their $2$-torsion, I decided to look at which genus $2$ Belyi maps we've computed so far are defined on bielliptic curves, i.e., genus $2$ hyperelliptic curves $X$ with distinct morphisms $\psi_1: X \to E_1$ and $\psi_2: X \to E_2$ where $E_1$ and $E_2$ are elliptic curves. You can easily spot at least some of these from their equations: when $y^2 = f(x)$ and $f$ contains only even powers of $x$. Let's see why in an example: consider
+\begin{align*}
+X: y^{2} = x^{6} + 4 x^{4} + 6 x^{2} + 3 \, ,
+\end{align*}
+the curve from \texttt{6T6-6\_6\_3.3-a}. Replacing $x^2$ by $x$, we obtain the elliptic curve
+$$
+E_1: y^2 = x^3 + 4 x^2 + 6 x + 3 \, .
+$$
+Homogenizing the equation defining $X$ (gradedly, of course), we have
+$$
+y^{2} = x^{6} + 4 x^{4} z^2  + 6 x^{2} z^4 + 3 z^6
+$$
+and dehomogenizing by setting $x = 1$, we have
+$$
+y^{2} = 1 + 4 z^2  + 6 z^4 + 3 z^6
+$$
+find the second elliptic curve
+$$
+E_2: y^2 = 1 + 4 z + 6 z^2 + 3 z^3 \, .
+$$
+So we get the maps
+\begin{align*}
+X &\to E_1\\
+(x,y) &\mapsto (x^2, y)
+\end{align*}
+and
+\begin{align*}
+X &\to E_2\\
+(z,y) &\mapsto (z^2, y) \, .
+\end{align*}
+
+on the open subsets where these equations hold. (I could work out the maps on the homogenized version, but I'm too lazy.)
+
+Anyway, here's a list of all the genus $2$ bielliptic Belyi maps I've found so far.
+\begin{itemize}
+\item
+\url{https://beta.lmfdb.org/Belyi/5T4/5/5/5/a}
+
+\item
+\url{https://beta.lmfdb.org/Belyi/6T1/6/6/3.3/a}
+
+\item
+\url{https://beta.lmfdb.org/Belyi/6T5/6/6/3.3/a}
+
+\item
+\url{https://beta.lmfdb.org/Belyi/6T6/6/6/3.3/a}
+
+\item
+\url{https://beta.lmfdb.org/Belyi/7T7/7/4.3/4.3/b}
+\end{itemize}
+
+I was hoping to find an example where we have computed a Belyi map on the genus $2$ curve and both elliptic curves. Maybe we could find a commutative diagram?
+$$
+\begin{tikzcd}
+{} & X \ar[swap]{dl}{\psi_1} \ar[]{dr}{\psi_2} \ar[]{dd}{\varphi}& {}\\
+E_1 \ar[swap]{dr}{\varphi_1} & {} & E_2 \ar[]{dl}{\varphi_2}\\
+{} & \P^1 & {}
+\end{tikzcd}
+$$
+
+I came close, but no cigar so far. Here's the near-example. The map \texttt{6T6-6\_6\_3.3-a} (\url{https://beta.lmfdb.org/Belyi/6T6/6/6/3.3/a}) is defined on the curve \texttt{1728.b.442368.1} (\url{https://beta.lmfdb.org/Genus2Curve/Q/1728/b/442368/1}). It is a $2$-glueing of the elliptic curves \texttt{36.a4} (\url{https://beta.lmfdb.org/EllipticCurve/Q/36/a/4}) and \texttt{48.a5} (\url{https://beta.lmfdb.org/EllipticCurve/Q/48/a/5}). The curve \texttt{36.a4} has minimal Weierstrass model
+$$
+E_1: y^2 = x^3 + 1
+$$
+and we've computed a couple Belyi maps on $E_1$, namely the Euclidean map \texttt{3T1-3\_3\_3-a} (\url{https://beta.lmfdb.org/Belyi/3T1/3/3/3/a}) and the hyperbolic map \texttt{9T20-9\_2.2.2.1.1.1\_6.3-a} (\url{https://beta.lmfdb.org/Belyi/9T20/9/2.2.2.1.1.1/6.3/a}). But despite some near misses, we haven't gotten to a Belyi map on \texttt{48.a5}. However, while searching for Belyi maps of conductor $48$, I did make an interesting observation.
+
+\section{Curve with many maps}
+
+I noticed that the elliptic curve with label \texttt{48.a6}
+\begin{align*}
+E: y^2 &= x^3 + 47/768 x + 2359/55296
+\end{align*}
+admits a bunch of Belyi maps of low degree. First we have one of my favorites, the genus 1 hyperbolic triple of minimal degree \texttt{4T5-4\_4\_3.1-a} (\url{https://beta.lmfdb.org/Belyi/4T5/4/4/3.1/a}). Today I noticed there are a bunch of degree 8 maps defined on the isomorphic curve
+$$
+E': y^2 = x^3 + 47/12288 x + 2359/3538944
+$$
+(this equation just differs by a factor of $2$), namely \texttt{8T46-8\_8\_3.1.1.1.1.1-a} (\url{https://beta.lmfdb.org/Belyi/8T46/8/8/3.1.1.1.1.1/a}), \texttt{8T47-8\_2.2.2.2\_4.3.1-a} (\url{https://beta.lmfdb.org/Belyi/8T47/8/2.2.2.2/4.3.1/a}), and \texttt{8T47-8\_6.2\_4.1.1.1.1-a} (\url{https://beta.lmfdb.org/Belyi/8T47/8/6.2/4.1.1.1.1/a}). Even curiouser, all 3 have nearly the same equation! I wonder if there's some explanation for this. Maybe they arise from composing the degree $4$ map with a degree $2$ map, or maybe from taking a fiber product?
+
+\section{Different fields of definition for curve and map}
+
+When I was first computing genus $1$ Belyi maps, I ran into a problem. I thought that the Belyi map $\varphi: X \to \P^1$ with label \texttt{5T3-5\_4.1\_4.1-a} was defined over $\Q$, as the curve $X$ was. But it turned out that $\varphi$ is only defined over $\Q(i)$: see \url{https://beta.lmfdb.org/Belyi/5T3/5/4.1/4.1/a}. I saw another instance of this today: \url{https://beta.lmfdb.org/Belyi/7T7/7/4.3/4.3/c}.
+
+%\nocite{*} % use this to have all references listed, not just those cited
+%\bibliographystyle{amsplain}
+\bibliographystyle{alpha}
+%\addcontentsline{toc}{chapter}{References}
+%\bibliography{references}
+
+\end{document} 
