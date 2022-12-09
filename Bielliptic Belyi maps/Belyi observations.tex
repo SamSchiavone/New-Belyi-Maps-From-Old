@@ -172,7 +172,7 @@
 
 \renewcommand{\thesection}{\Roman{section}} 
 
-\usepackage{mathpple}
+\usepackage{mathpazo}
 %\usepackage{pxfonts}
 
 \everymath{\displaystyle}
@@ -278,4 +278,60 @@ When I was first computing genus $1$ Belyi maps, I ran into a problem. I thought
 %\addcontentsline{toc}{chapter}{References}
 %\bibliography{references}
 
+
+
+\section{Imprimitive Belyi maps}
+
+A while ago, Ciaran Schembri was trying to compute some Belyi maps related to his work on quaternionic Shimura curves. He was able to use our code to compute some of them, but had to use the \textsf{NumericalKernel} algorithm as our Newton code unsurprisingly crapped out. As usual, it is the ``extra'' point that caused trouble, either due to insufficient precision or maybe a bug. I should figure out which it is since it really might be a stupid bug that's holding things up.
+
+Anyway, we could tell that one of his Belyi map, of degree $12$, despite being defined on a genus $1$ curve, was really the pullback by the $x$-coordinate projection of a genus $0$ Belyi map. It was obvious because there was no $y$ in the answer once we had the equation. I used Nils Bruin and Jeroen's code to compute the monodromy group of the associated degree $6$ genus $0$ map, and then looked up the equation in our database---it was this one (\url{https://beta.lmfdb.org/Belyi/6T7/4.2/3.3/2.2.1.1/a}). Ciaran later did some group theory trickery modding out by centralizers to give a group theoretic way of figuring out the monodromy group for the genus $0$ map.
+
+Later, I asked John about this, and he said that all this happened because the monodromy group of the degree $12$ map was an imprimitive permutation group. He was right: the monodromy group of the degree $12$ map was imprimitive, which I checked this in \textsf{Magma} using \textsf{IsPrimitive}. You can even compute a maximal $G$-invariant partition, which allows you to compute the ``primitivication'', if that's a thing. In this case, it turned out that the maximal partition consisted of $3$ blocks of size $4$. This means that the primitivication is a subgroup of $S_3$, and actually is $S_3$ in this case. Which means that even the degree $6$ thing I found is imprimitive! They all come from the Belyi map \url{https://beta.lmfdb.org/Belyi/3T2/3/2.1/2.1/a}. Here's the code:
+
+\begin{lstlisting}
+>     [Sym(12)|
+>         (1, 8)(4, 11)(5, 10)(6, 12)(7, 9),
+>         (1, 6, 3, 4)(2, 5, 8, 7)(9, 10, 12, 11),
+>         (1, 5, 9, 8, 4, 12)(2, 7, 11, 3, 6, 10)
+> ];
+[
+(1, 8)(4, 11)(5, 10)(6, 12)(7, 9),
+(1, 6, 3, 4)(2, 5, 8, 7)(9, 10, 12, 11),
+(1, 5, 9, 8, 4, 12)(2, 7, 11, 3, 6, 10)
+]
+> sigma := $1;
+> G := sub< Sym(12) | sigma>;
+> G;
+Permutation group G acting on a set of cardinality 12
+(1, 8)(4, 11)(5, 10)(6, 12)(7, 9)
+(1, 6, 3, 4)(2, 5, 8, 7)(9, 10, 12, 11)
+(1, 5, 9, 8, 4, 12)(2, 7, 11, 3, 6, 10)
+> TransitiveGroupDescription(G);
+S_4(12d)x2
+> IsPrimitive(G);
+false
+> MaximalPartition(G);
+GSet{@
+{ 1, 2, 3, 8 },
+{ 4, 5, 6, 7 },
+{ 9, 10, 11, 12 }
+@}
+> BlocksAction(G, $1);
+Mapping from: GrpPerm: G to GrpPerm: $, Degree 3
+> Image($1);
+Permutation group acting on a set of cardinality 3
+(2, 3)
+(1, 2)
+(1, 2, 3)
+> $1 eq Sym(3);
+true
+\end{lstlisting}
+
+So I guess this is kind of a way of ``factoring" Belyi maps: given a monodromy group, we can find its primitivication, compute that smaller degree Belyi map, and then try to lift back up to the original map. I think this is basically what Mike was doing in his thesis: starting with $\Z/2\Z$ and then lifting to $2$-groups. So I guess our general strategy should probably be
+\begin{enumerate}
+  \item
+    Compute all primitive Belyi maps
+  \item
+    Compute all possible ``lifts" of these primitive maps
+\end{enumerate}
 \end{document} 

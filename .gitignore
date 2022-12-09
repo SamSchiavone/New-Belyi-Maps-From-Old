@@ -3,3 +3,7 @@
 __pycache__
 past_loadable
 *.swp
+*.aux
+*.log
+*.out
+*.synctex.gz
