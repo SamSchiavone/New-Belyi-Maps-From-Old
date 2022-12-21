@@ -61,18 +61,20 @@ K1 := BaseField(X1);
 //KX1<x> := FunctionField(X1);
 //phi1 := KX1!(3/2*x^5/(x^5 - 5/2*x^4 - 5/4*x^3 + 45/8*x^2 - 27/8));
 lab2 := LMFDBLabelToBelyiDBLabel("3T2-3_2.1_2.1-a" : dot_m := true);
+//lab2 := "3T1-[3,3,3]-3-3-3-g1.m";
+//lab2 := "3T1-[3,3,1]-3-3-111-g0.m";
 s2 := BelyiDBRead(lab2);
 phi2 := s2`BelyiDBBelyiMaps[1];
 X2 := s2`BelyiDBBelyiCurves[1];
 
 C3 := FiberProduct(phi1,phi2);
 C3;
-D3 := FiberProductPlane(phi1, phi2 : ind := 1);
+D3 := FiberProductPlane(phi1, phi2 : ind := 2);
 //D3;
 //KC3 := FunctionField(C3);
 //phi := KC3.1;
-//KD3 := FunctionField(D3);
-//phi := KD3.1;
+KD3 := FunctionField(D3);
+phi := KD3.1;
 VerifyBelyiRamification(phi);
 
 
